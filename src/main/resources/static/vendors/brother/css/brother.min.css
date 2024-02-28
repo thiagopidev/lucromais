@@ -1,0 +1,7 @@
+@font-face {
+    font-family: Brother;
+    src: url("../fonts/brother.otf") format("opentype");
+}
+.brother-font {
+    font-family: Brother;
+}

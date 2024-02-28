@@ -1,0 +1,36 @@
+.first-color-light-logo {
+    color: #46c0ec;
+}
+.second-color-light-logo {
+    color: #1f63ac;
+}
+.ico {
+    margin-right: 5px;
+}
+.ico-grid {
+    margin-right: 5px;
+}
+.ico-edit {
+    color: #007bff;
+}
+.ico-delete {
+    color: #dc3545;
+}
+.btn-regular {
+    border: 1px solid #c0c0c0;
+    width: 120px;
+}
+.input {
+    text-transform: uppercase;
+    border-radius: 0px;
+}
+.select {
+    text-transform: uppercase;
+    border-radius: 0px;
+    appearance: none;
+    text-indent: 1px;
+    text-overflow: "";
+}
+.square {
+    border-radius: 0px;
+}
