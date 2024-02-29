@@ -55,8 +55,8 @@
 					</div>
 					<nav class="mt-2">
 						<ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
-							<li class="nav-item menu-open">
-								<a th:href="@{/}" class="nav-link active">
+							<li class="nav-item">
+								<a th:href="@{/}" class="nav-link" th:classappend="${menu=='home'} ? active">
 									<i class="nav-icon fas fa-home"></i>
 									<p>Início</p>
 								</a>
