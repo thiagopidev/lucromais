@@ -29,6 +29,16 @@
 					</li>
 				</ul>
 			</nav>
+			<nav class="main-header navbar navbar-expand-md navbar-light navbar-white" th:fragment="clean-nav">
+				<div class="container">
+					<a href="" class="navbar-brand brother-font">
+						<span class="first-color-light-logo">Lucro</span><span class="second-color-light-logo">mais</span>
+					</a>
+					<button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+				</div>
+			</nav>
 			<aside class="main-sidebar sidebar-dark-primary elevation-1" th:fragment="menu">
 				<a th:href="@{/}" class="brand-link logo-switch">
 					<img th:src="@{/images/logo-xs.png}" alt="Lucromais" class="brand-image-xl logo-xs"/>
