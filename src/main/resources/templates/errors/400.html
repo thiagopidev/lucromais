@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>Lucromais | Requisição incorreta</title>
+		<link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}"/>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"/>
+		<link rel="stylesheet" th:href="@{/vendors/fontawesome/css/all.min.css}"/>
+		<link rel="stylesheet" th:href="@{/vendors/adminlte/css/adminlte.min.css}"/>
+		<link rel="stylesheet" th:href="@{/vendors/brother/css/brother.min.css}"/>
+		<link rel="stylesheet" th:href="@{/css/styles.css}"/>
+	</head>
+	<body class="hold-transition layout-top-nav layout-navbar-fixed layout-footer-fixed">
+		<div class="wrapper">
+			<div th:replace="~{frags/sample :: clean-nav}"></div>
+			<div class="content-wrapper">
+				<div class="content-header">
+					<div class="container"></div>
+				</div>
+				<div class="content">
+					<div class="container">
+						<div class="row">
+							<div class="error-page">
+								<h3 class="headline text-warning">400</h3>
+								<div class="error-content">
+									<h3><i class="fas fa-exclamation-triangle text-warning"></i> Requisição incorreta</h3>
+									<p>
+										O servidor não conseguiu atender sua requisição, devido falhas no uso do sistema.
+										Enquanto isso, você pode <a th:href="@{/}">retornar à página inicial</a> clicando no botão abaixo.
+									</p>
+									<a th:href="@{/}" class="btn btn-warning btn-block"><i class="fa fa-arrow-left fa-sm ico"></i>Voltar</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div th:replace="~{frags/sample :: footer}"></div>
+		</div>
+		<script th:src="@{/vendors/jquery/jquery.min.js}"></script>
+		<script th:src="@{/vendors/bootstrap/js/bootstrap.bundle.min.js}"></script>
+		<script th:src="@{/vendors/adminlte/js/adminlte.min.js}"></script>
+	</body>
+</html>
