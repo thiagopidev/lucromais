@@ -16,9 +16,17 @@
 .ico-delete {
     color: #dc3545;
 }
+.ico-disabled {
+	color: #00ced1;
+}
 .btn-regular {
     border: 1px solid #c0c0c0;
     width: 120px;
+}
+.link-disabled {
+	pointer-events: none;
+	cursor: default;
+	text-decoration: none;
 }
 .input {
     text-transform: uppercase;
