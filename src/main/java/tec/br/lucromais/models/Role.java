@@ -44,7 +44,7 @@ public class Role implements Serializable, GrantedAuthority {
 	**/
 	@Getter(value = AccessLevel.NONE)
 	@Column(length = 20, nullable = false)
-	private String name;
+	private String authority;
 	
 	/**
 	 * Lista de usuários percententes a autorização de usuários
@@ -58,6 +58,6 @@ public class Role implements Serializable, GrantedAuthority {
 	**/
 	@Override
 	public String getAuthority() {
-		return name;
+		return authority;
 	}
 }
