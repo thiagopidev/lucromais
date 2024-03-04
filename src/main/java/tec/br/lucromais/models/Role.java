@@ -3,6 +3,7 @@ package tec.br.lucromais.models;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 
 import jakarta.persistence.Column;
@@ -12,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -42,6 +44,8 @@ public class Role implements Serializable, GrantedAuthority {
 	/**
 	 * Nome da autorização de usuários
 	**/
+	@NotBlank(message = "Nome é obrigatório")
+	@Length(min = 5, max = 20, message = "Nome deve conter entre 5 e 20 caracteres")
 	@Getter(value = AccessLevel.NONE)
 	@Column(length = 20, nullable = false)
 	private String authority;
