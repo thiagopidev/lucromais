@@ -29,13 +29,4 @@ public class ExceptionHandlerControllerAdvice {
 	public String handleEntityNotFoundException(EntityNotFoundException e) {
 		return "errors/404";
 	}
-	
-	/**
-	 * handler para captura de IllegalArgumentException
-	 * @return caminho da página de erro 400
-	**/
-	@ExceptionHandler(IllegalArgumentException.class)
-	public String handleIllegalArgumentException(IllegalArgumentException e) {
-		return "error/400";
-	}
 }
