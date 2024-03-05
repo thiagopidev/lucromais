@@ -29,4 +29,13 @@ public class ExceptionHandlerControllerAdvice {
 	public String handleEntityNotFoundException(EntityNotFoundException e) {
 		return "errors/404";
 	}
+	
+	/**
+	 * handler para captura de EntityInUseException
+	 * @return caminho da página de erro 404
+	**/
+	@ExceptionHandler(EntityInUseException.class)
+	public String handleEntityInUse(EntityInUseException e) {
+		return "errors/409";
+	}
 }
