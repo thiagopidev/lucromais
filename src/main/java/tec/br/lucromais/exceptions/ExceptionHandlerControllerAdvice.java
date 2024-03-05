@@ -27,7 +27,7 @@ public class ExceptionHandlerControllerAdvice {
 	**/
 	@ExceptionHandler(EntityNotFoundException.class)
 	public String handleEntityNotFoundException(EntityNotFoundException e) {
-		return "error/404";
+		return "errors/404";
 	}
 	
 	/**
