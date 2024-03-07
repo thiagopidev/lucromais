@@ -1,7 +1,5 @@
 package tec.br.lucromais.services;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -38,14 +36,12 @@ public class RoleService {
 	}
 	
 	/**
-	 * Captura de uma autorização de usuário através do identificador dessa autorização
+	 * Captura uma autorização de usuário pelo identificador dessa autorização.
 	 * @return autorização encontrada
 	**/
-	public Role getById(Long id) {
-		Optional<Role> role = roleRepository.findById(id);
-		if(role.isEmpty())
-			throw new EntityNotFoundException("Grupo de usuário não encontrado");
-		return role.get();
+	public Role findOrFail(Long id) {
+		return roleRepository.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException("Grupo de usuário não encontrado"));
 	}
 	
 	/**

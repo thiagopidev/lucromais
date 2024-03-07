@@ -73,7 +73,7 @@ public class RoleController {
 	public ModelAndView update(@PathVariable("id") Long id, Role role, boolean isInvalid) {
 		ModelAndView mv = new ModelAndView("roles/update");
 		if(!isInvalid)
-			role = roleService.getById(id);
+			role = roleService.findOrFail(id);
 		mv.addObject("role", role);
 		mv.addObject("menu", "system");
 		return mv;
@@ -86,7 +86,7 @@ public class RoleController {
 	public ModelAndView update(@Valid Role role, BindingResult result) {
 		if(result.hasErrors())
 			return update(role.getId(), role, true);
-		Role persistedRole = roleService.getById(role.getId());
+		Role persistedRole = roleService.findOrFail(role.getId());
 		BeanUtils.copyProperties(role, persistedRole, "id", "createdAt");
 		roleService.persist(persistedRole);
 		return new ModelAndView("redirect:/grupos");
@@ -97,7 +97,7 @@ public class RoleController {
 	**/
 	@GetMapping("/{id}/excluir")
 	public ModelAndView delete(@PathVariable("id") Long id) {
-		Role role = roleService.getById(id);
+		Role role = roleService.findOrFail(id);
 		roleService.remove(role);
 		return new ModelAndView("redirect:/grupos");
 	}
