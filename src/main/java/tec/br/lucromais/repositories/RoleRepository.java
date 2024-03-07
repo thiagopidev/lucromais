@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import tec.br.lucromais.models.Role;
 
 /**
- * Interface de repositório de grupos de usuários
+ * Interface de repositório de autorizações de usuários
  * @author Thiago Pinheiro do Nascimento
  * @version 0.1
  * @since 0.1
