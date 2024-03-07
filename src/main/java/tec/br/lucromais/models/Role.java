@@ -1,8 +1,11 @@
 package tec.br.lucromais.models;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -55,6 +58,14 @@ public class Role implements Serializable, GrantedAuthority {
 	**/
 	@ManyToMany(mappedBy = "roles")
 	private List<User> users;
+	
+	@CreationTimestamp
+	@Column(nullable = false, columnDefinition = "datetime")
+	private LocalDateTime createdAt;
+	
+	@UpdateTimestamp
+	@Column(nullable = false, columnDefinition = "datetime")
+	private LocalDateTime updatedAt;
 
 	/**
 	 * Retorna o nome da autorização de usuários
