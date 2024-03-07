@@ -1,5 +1,6 @@
 package tec.br.lucromais.controllers;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -85,7 +86,9 @@ public class RoleController {
 	public ModelAndView update(@Valid Role role, BindingResult result) {
 		if(result.hasErrors())
 			return update(role.getId(), role, true);
-		roleService.persist(role);
+		Role persistedRole = roleService.getById(role.getId());
+		BeanUtils.copyProperties(role, persistedRole, "id", "createdAt");
+		roleService.persist(persistedRole);
 		return new ModelAndView("redirect:/grupos");
 	}
 	
