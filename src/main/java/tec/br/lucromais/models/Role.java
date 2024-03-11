@@ -61,12 +61,18 @@ public class Role implements Serializable, GrantedAuthority {
 	@ManyToMany(mappedBy = "roles")
 	private List<User> users;
 	
+	/**
+	 * Data e hora da criação da autorização de usuários
+	**/
 	@CreationTimestamp
-	@Column(nullable = false, columnDefinition = "datetime")
+	@Column(columnDefinition = "datetime", nullable = false, updatable = false)
 	private LocalDateTime createdAt;
 	
+	/**
+	 * Data e hora da última alteração da autorização de usuários
+	**/
 	@UpdateTimestamp
-	@Column(nullable = false, columnDefinition = "datetime")
+	@Column(columnDefinition = "datetime", nullable = false)
 	private LocalDateTime updatedAt;
 
 	/**
