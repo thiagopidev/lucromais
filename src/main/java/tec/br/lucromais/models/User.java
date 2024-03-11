@@ -1,9 +1,12 @@
 package tec.br.lucromais.models;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -98,6 +101,20 @@ public class User implements Serializable, UserDetails {
 	@Getter(value = AccessLevel.NONE)
 	@Column(columnDefinition = "tinyint(1) default 0", nullable = false)
 	private boolean enabled;
+	
+	/**
+	 * Data e hora da criação do usuário
+	**/
+	@CreationTimestamp
+	@Column(columnDefinition = "datetime", nullable = false, updatable = false)
+	private LocalDateTime createdAt;
+	
+	/**
+	 * Data e hora da última alteração do usuário
+	**/
+	@UpdateTimestamp
+	@Column(columnDefinition = "datetime", nullable = false)
+	private LocalDateTime updatedAt;
 	
 	/**
 	 * Retorna as autorizações concedidas ao usuário
