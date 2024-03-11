@@ -117,6 +117,18 @@ public class User implements Serializable, UserDetails {
 	private LocalDateTime updatedAt;
 	
 	/**
+	 * Nome usual do usuário
+	**/
+	@Column(length = 30, nullable = false)
+	private String usualname;
+	
+	/**
+	 * E-mail do usuário
+	**/
+	@Column(length = 60, nullable = false)
+	private String email;
+	
+	/**
 	 * Retorna as autorizações concedidas ao usuário
 	 * @return as autorizações do usuário
 	**/
