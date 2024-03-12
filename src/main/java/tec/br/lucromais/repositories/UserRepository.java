@@ -20,4 +20,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	 * @return o usuário, caso este exista
 	**/
 	public Optional<User> findByUsername(String username);
+	
+	/**
+	 * Retorna, caso exista, um usuário a partir do email
+	 * @return o usuário, caso este exista
+	**/
+	public Optional<User> findByEmail(String email);
 }
