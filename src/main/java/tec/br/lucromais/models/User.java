@@ -20,6 +20,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.PostLoad;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -192,11 +194,22 @@ public class User implements Serializable, UserDetails {
 	}
 	
 	/**
-	 * Método executado após o carregamento de usuários
+	 * Método executado após o carregar usuários
 	 * Esse método objetiva formatar o valor do atributo username
 	**/
 	@PostLoad
 	private void postLoad() {
 		this.username = this.username.replaceAll("(\\d{3})(\\d{3})(\\d{3})", "$1.$2.$3-");
+	}
+	
+	/**
+	 * Método executado antes de persistir e alterar usuários
+	 * Esse método formata valores dos atributos username, email e usualname
+	**/
+	@PrePersist @PreUpdate
+	private void prePersistPreUpdate() {
+		username = username.replaceAll("\\.|-", "");
+		email = email.toUpperCase();
+		usualname = usualname.toUpperCase();
 	}
 }
