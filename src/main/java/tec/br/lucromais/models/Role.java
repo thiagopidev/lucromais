@@ -58,7 +58,7 @@ public class Role implements Serializable, GrantedAuthority {
 	/**
 	 * Lista de usuários percententes a autorização de usuários
 	**/
-	@ManyToMany(mappedBy = "roles")
+	@ManyToMany(mappedBy = "authorities")
 	private List<User> users;
 	
 	/**

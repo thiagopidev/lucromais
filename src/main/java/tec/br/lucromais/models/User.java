@@ -74,7 +74,7 @@ public class User implements Serializable, UserDetails {
 		inverseJoinColumns = @JoinColumn(
 		name = "roles_id", referencedColumnName = "id"
 	))
-	private List<Role> roles;
+	private List<Role> authorities;
 	
 	/**
 	 * Indica se a conta do usuário está vigente ou expirada
@@ -136,7 +136,7 @@ public class User implements Serializable, UserDetails {
 	**/
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return roles;
+		return authorities;
 	}
 
 	/**
