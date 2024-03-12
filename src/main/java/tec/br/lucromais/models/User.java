@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -23,10 +25,13 @@ import jakarta.persistence.PostLoad;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AccessLevel;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Classe modelo para definição de usuários
@@ -34,7 +39,8 @@ import lombok.Getter;
  * @version 0.1
  * @since 0.1
 **/
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "users")
@@ -60,6 +66,8 @@ public class User implements Serializable, UserDetails {
 	/**
 	 * Nome usado para autenticação do usuário
 	**/
+	@NotBlank(message = "CPF é obrigatório")
+	@CPF(message = "CPF inválido")
 	@Getter(value = AccessLevel.NONE)
 	@Column(columnDefinition = "char(11)", nullable = false)
 	private String username;
@@ -67,6 +75,7 @@ public class User implements Serializable, UserDetails {
 	/**
 	 * Lista de autorizações do usuário
 	**/
+	@NotEmpty(message = "Grupo é obrigatório")
 	@Getter(value = AccessLevel.NONE)
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "authorities", joinColumns = @JoinColumn(
@@ -121,12 +130,17 @@ public class User implements Serializable, UserDetails {
 	/**
 	 * Nome usual do usuário
 	**/
+	@NotBlank(message = "Nome usual é obrigatório")
+	@Length(min = 5, max = 30, message = "Nome usual deve conter entre 5 e 30 caracteres")
 	@Column(length = 30, nullable = false)
 	private String usualname;
 	
 	/**
 	 * E-mail do usuário
 	**/
+	@NotBlank(message = "E-mail é obrigatório")
+	@Length(min = 10, max = 60, message = "E-mail deve contee entre 10 e 60 caracteres")
+	@Email(message = "E-mail inválido")
 	@Column(length = 60, nullable = false)
 	private String email;
 	
