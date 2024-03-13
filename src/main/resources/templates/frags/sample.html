@@ -18,6 +18,14 @@
 							<li><a th:href="@{/grupos}" class="dropdown-item"><i class="fas fa-users mr-2"></i>Grupos</a></li>
 						</ul>
 					</li>
+					<li class="nav-item dropdown" th:classappend="${menu=='administration'} ? active">
+						<a id="dropdown-first-sub-menu" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
+							<i class="fas fa-briefcase mr-2"></i>Administração
+						</a>
+						<ul aria-labelledby="dropdown-first-sub-menu" class="dropdown-menu border-0 shadow">
+							<li><a th:href="@{/usuarios}" class="dropdown-item"><i class="fas fa-user mr-2"></i>Usuários</a></li>
+						</ul>
+					</li>
 				</ul>
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
