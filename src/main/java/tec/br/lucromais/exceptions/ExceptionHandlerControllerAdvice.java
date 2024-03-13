@@ -38,4 +38,13 @@ public class ExceptionHandlerControllerAdvice {
 	public String handleEntityInUse(EntityInUseException e) {
 		return "errors/409";
 	}
+	
+	/**
+	 * handler para captura de IllegalArgumentException
+	 * @return caminho da página de erro 400
+	**/
+	@ExceptionHandler(IllegalArgumentException.class)
+	public String handleIllegalArgumentException(IllegalArgumentException e) {
+		return "errors/400";
+	}
 }
