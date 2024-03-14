@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import tec.br.lucromais.models.User;
 import tec.br.lucromais.repositories.UserRepository;
+import tec.br.lucromais.security.Account;
 
 /**
  * Classe de serviço de verificação e carregamento de usuário
@@ -35,6 +36,6 @@ public class AppUserDetailsService implements UserDetailsService {
 		Optional<User> user = userRepository.findByUsername(username.replaceAll("\\.|-", ""));
 		if(user.isEmpty())
 			throw new UsernameNotFoundException("Usuário não encontrado");
-		return user.get();
+		return new Account(user.get());
 	}
 }
