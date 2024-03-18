@@ -88,7 +88,7 @@ public class UserService {
 	 * @return true caso exista outro usuário com o mesmo e-mail ou false caso não exista outro usuário com o mesmo e-mail
 	**/
 	private boolean isDuplicateUserEmail(User user) {
-		Optional<User> persistedUser = userRepository.findByEmail(user.getEmail().toUpperCase());
+		Optional<User> persistedUser = userRepository.findByEmail(user.getEmail().toLowerCase());
 		if(persistedUser.isPresent() && user.getId() != persistedUser.get().getId())
 			return true;
 		return false;

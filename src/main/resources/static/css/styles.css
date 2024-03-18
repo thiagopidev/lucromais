@@ -29,11 +29,9 @@
 	text-decoration: none;
 }
 .input {
-    text-transform: uppercase;
     border-radius: 0px;
 }
 .select {
-    text-transform: uppercase;
     border-radius: 0px;
     appearance: none;
     text-indent: 1px;

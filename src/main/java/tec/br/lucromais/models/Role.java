@@ -15,8 +15,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
@@ -82,14 +80,5 @@ public class Role implements Serializable, GrantedAuthority {
 	@Override
 	public String getAuthority() {
 		return authority;
-	}
-	
-	/**
-	 * Método executado antes de persistir e alterar uma autorização de usuário
-	 * Esse método objetiva tornar maiúsculo o valor do atributo authority
-	**/
-	@PrePersist @PreUpdate
-	public void prePersistPreUpdate() {
-		authority = authority.toUpperCase();
 	}
 }

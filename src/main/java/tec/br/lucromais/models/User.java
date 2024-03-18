@@ -225,12 +225,11 @@ public class User implements Serializable, UserDetails {
 	
 	/**
 	 * Método executado antes de persistir e alterar usuários
-	 * Esse método formata valores dos atributos username, email e usualname
+	 * Esse método formata valores dos atributos username e email
 	**/
 	@PrePersist @PreUpdate
 	private void prePersistPreUpdate() {
 		username = username.replaceAll("\\.|-", "");
-		email = email.toUpperCase();
-		usualname = usualname.toUpperCase();
+		email = email.toLowerCase();
 	}
 }
