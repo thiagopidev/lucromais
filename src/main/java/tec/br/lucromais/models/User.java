@@ -87,27 +87,6 @@ public class User implements Serializable, UserDetails {
 	private List<Role> authorities;
 	
 	/**
-	 * Indica se a conta do usuário está vigente ou expirada
-	**/
-	@Getter(value = AccessLevel.NONE)
-	@Column(columnDefinition = "tinyint(1) default 0", nullable = false)
-	private boolean accountNonExpired;
-	
-	/**
-	 * Indica se o usuário está desbloqueado ou bloqueado
-	**/
-	@Getter(value = AccessLevel.NONE)
-	@Column(columnDefinition = "tinyint(1) default 0", nullable = false)
-	private boolean accountNonLocked;
-	
-	/**
-	 * Indica se as credenciais do usuário estão vigentes ou expiraram
-	**/
-	@Getter(value = AccessLevel.NONE)
-	@Column(columnDefinition = "tinyint(1) default 0", nullable = false)
-	private boolean credentialsNonExpired;
-	
-	/**
 	 * Indica se o usuário está ativado ou desativado
 	**/
 	@Getter(value = AccessLevel.NONE)
@@ -184,7 +163,7 @@ public class User implements Serializable, UserDetails {
 	**/
 	@Override
 	public boolean isAccountNonExpired() {
-		return accountNonExpired;
+		return enabled;
 	}
 
 	/**
@@ -193,7 +172,7 @@ public class User implements Serializable, UserDetails {
 	**/
 	@Override
 	public boolean isAccountNonLocked() {
-		return accountNonLocked;
+		return enabled;
 	}
 
 	/**
@@ -202,7 +181,7 @@ public class User implements Serializable, UserDetails {
 	**/
 	@Override
 	public boolean isCredentialsNonExpired() {
-		return credentialsNonExpired;
+		return enabled;
 	}
 
 	/**

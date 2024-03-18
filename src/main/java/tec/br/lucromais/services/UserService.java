@@ -41,9 +41,6 @@ public class UserService {
 			throw new EntityWithInvalidFieldException("E-mail cadastrado para outro usuário", "email");
 		if(user.getId() == null) {
 			user.setPassword(generateRandomPassword());
-			user.setAccountNonExpired(true);
-			user.setAccountNonLocked(true);
-			user.setCredentialsNonExpired(true);
 			user.setEnabled(true);
 		}
 		if(userRepository.save(user) == null)

@@ -65,9 +65,6 @@ public class AuthController {
 		@SuppressWarnings("unchecked")
 		List<Role> authorities = (List<Role>) persistedUser.getAuthorities();
 		user.setAuthorities(authorities);
-		user.setAccountNonExpired(persistedUser.isAccountNonExpired());
-		user.setAccountNonLocked(persistedUser.isAccountNonLocked());
-		user.setCredentialsNonExpired(persistedUser.isCredentialsNonExpired());
 		user.setEnabled(persistedUser.isEnabled());
 		user.setCreatedAt(persistedUser.getCreatedAt());
 		user.setUsualname(persistedUser.getUsualname());
