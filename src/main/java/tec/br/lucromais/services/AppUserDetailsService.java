@@ -22,18 +22,18 @@ import tec.br.lucromais.security.Account;
 public class AppUserDetailsService implements UserDetailsService {
 	
 	/**
-	 * Injeção de dependência com a interface de repositório de usuários
+	 * Injeção de dependência com a interface de repositório de usuário
 	**/
 	@Autowired
 	private UserRepository userRepository;
 	
 	/**
 	 * Retorna e carrega as informações do usuário a partir do nome de autenticação do usuário
-	 * @return o usuário, caso este exista
+	 * @return a conta de usuário, caso o usuário exista
 	**/
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<User> user = userRepository.findByUsername(username.replaceAll("\\.|-", ""));
+		Optional<User> user = userRepository.findByCpf(username.replaceAll("\\.|-", ""));
 		if(user.isEmpty())
 			throw new UsernameNotFoundException("Usuário não encontrado");
 		return new Account(user.get());

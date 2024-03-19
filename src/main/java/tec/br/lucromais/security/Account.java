@@ -11,7 +11,10 @@ import lombok.Getter;
  * @since 0.1
 **/
 public class Account extends User {
-
+	
+	/**
+	 * Identificador serial advindo da herança de User
+	**/
 	private static final long serialVersionUID = 1L;
 	
 	/**
@@ -24,7 +27,7 @@ public class Account extends User {
 	 * Construtor da classe usada como estratégia para mostrar informações do usuário logado alheias à classe UserDetails
 	**/
 	public Account(tec.br.lucromais.models.User user) {
-		super(user.getUsername(), user.getPassword(), user.isEnabled(), user.isAccountNonExpired(), user.isCredentialsNonExpired(), user.isAccountNonLocked(), user.getAuthorities());
+		super(user.getCpf(), user.getPassword(), user.isEnabled(), user.isEnabled(), user.isEnabled(), user.isEnabled(), user.getAuthorities());
 		this.user = user;
 	}
 }
