@@ -52,30 +52,5 @@ public class AuthController {
 		return mv;
 	}
 	
-	/**
-	 * Action post de redefinição de senha do usuário logado
-	**/
-	@PostMapping("/senhas")
-	public ModelAndView changePassword(User user, BindingResult result, RedirectAttributes attributes) {
-		Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Long userId = account.getUser().getId();
-		User persistedUser = userService.findOrFail(userId);
-		user.setId(persistedUser.getId());
-		user.setUsername(persistedUser.getUsername());	
-		@SuppressWarnings("unchecked")
-		List<Role> authorities = (List<Role>) persistedUser.getAuthorities();
-		user.setAuthorities(authorities);
-		user.setEnabled(persistedUser.isEnabled());
-		user.setCreatedAt(persistedUser.getCreatedAt());
-		user.setUsualname(persistedUser.getUsualname());
-		user.setEmail(persistedUser.getEmail());
-		try {
-			resetPasswordService.save(user);
-			attributes.addFlashAttribute("success", "Senha resetada com sucesso");
-		} catch (EntityWithInvalidFieldException e) {
-			result.rejectValue(e.getField(), e.getMessage(), e.getMessage());
-			return changePassword(user);
-		}
-		return new ModelAndView("redirect:/senhas");
-	}
+	
 }
