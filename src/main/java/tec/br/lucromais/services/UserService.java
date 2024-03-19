@@ -16,7 +16,7 @@ import tec.br.lucromais.models.User;
 import tec.br.lucromais.repositories.UserRepository;
 
 /**
- * Classe de serviço de definição de usuários
+ * Classe service de usuário
  * @author Thiago Pinheiro do Nascimento
  * @version 0.1
  * @since 0.1
@@ -25,18 +25,18 @@ import tec.br.lucromais.repositories.UserRepository;
 public class UserService {
 	
 	/**
-	 * Injeção de dependência com a interface de repositório de usuários
+	 * Injeção de dependência com a interface repository de usuário
 	**/
 	@Autowired
 	private UserRepository userRepository;
 	
 	/**
-	 * Persistência de usuários
+	 * Persistência de usuário
 	**/
 	@Transactional
 	public void persist(User user) throws EntityWithInvalidFieldException {
 		if(isDuplicateUserCpf(user))
-			throw new EntityWithInvalidFieldException("CPF cadastrado para outro usuário", "username");
+			throw new EntityWithInvalidFieldException("CPF cadastrado para outro usuário", "cpf");
 		if(isDuplicateUserEmail(user))
 			throw new EntityWithInvalidFieldException("E-mail cadastrado para outro usuário", "email");
 		if(user.getId() == null) {
@@ -57,7 +57,7 @@ public class UserService {
 	}
 	
 	/**
-	 * Remoção de um usuário persistido, desde que não haja violação de integridade
+	 * Remoção de usuário persistido, desde que não haja violação de integridade
 	**/
 	@Transactional
 	public void remove(User user) {
@@ -74,7 +74,7 @@ public class UserService {
 	 * @return true caso exista outro usuário com o mesmo cpf ou false caso não exista outro usuário com o mesmo cpf
 	**/
 	private boolean isDuplicateUserCpf(User user) {
-		Optional<User> persistedUser = userRepository.findByUsername(user.getUsername().replaceAll("\\.|-", ""));
+		Optional<User> persistedUser = userRepository.findByCpf(user.getCpf().replaceAll("\\.|-", ""));
 		if(persistedUser.isPresent() && user.getId() != persistedUser.get().getId())
 			return true;
 		return false;
