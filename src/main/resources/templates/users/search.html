@@ -46,29 +46,30 @@
 												<tr>
 													<th>E-mail</th>
 													<th>Grupo</th>
+													<th>Status</th>
 													<th>Ação</th>
 												</tr>
 											</thead>
 											<tbody>
 												<tr th:each="user : ${users}">
 													<td th:text="${user.getEmail().toLowerCase()}"></td>
-													<td th:text="${#strings.capitalize(user.getAuthorities().get(0).getAuthority().toLowerCase())}"></td>
-													<td>
-														<a th:href="@{/usuarios/{id}/editar(id=${user.getId()})}" title="Editar"><i class="fa fa-edit ico-grid ico-edit"></i></a>
-													</td>
+													<td th:text="${user.getAuthorities().get(0).getAuthority() == 'ADM' ? 'Administrador' : 'Cliente' }"></td>
+													<td th:text="${user.isEnabled() ? 'Ativo' : 'Inativo' }"></td>
+													<td><a th:href="@{/users/{id}/update(id=${user.getId()})}" title="Editar"><i class="fa fa-edit ico-grid ico-edit"></i></a></td>
 												</tr>
 											</tbody>
 											<tfoot>
 												<tr>
 													<th>E-mail</th>
 													<th>Grupo</th>
+													<th>Status</th>
 													<th>Ação</th>
 												</tr>
 											</tfoot>
 										</table>
 									</div>
 									<div class="card-footer">
-										<a th:href="@{/usuarios/novo}" class="btn btn-secondary btn-regular"><i class="fa fa-plus fa-sm ico"></i>Novo</a>
+										<a th:href="@{/users/create}" class="btn btn-secondary btn-regular"><i class="fa fa-plus fa-sm ico"></i>Novo</a>
 									</div>
 								</div>
 							</div>
