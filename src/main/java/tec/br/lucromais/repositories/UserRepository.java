@@ -16,10 +16,10 @@ import tec.br.lucromais.models.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 	/**
-	 * Retorna, caso exista, um usuário a partir do nome usado para autenticação
+	 * Retorna, caso exista, um usuário a partir do cpf
 	 * @return o usuário, caso este exista
 	**/
-	public Optional<User> findByUsername(String username);
+	public Optional<User> findByCpf(String cpf);
 	
 	/**
 	 * Retorna, caso exista, um usuário a partir do email
