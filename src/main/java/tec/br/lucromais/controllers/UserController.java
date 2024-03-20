@@ -100,6 +100,7 @@ public class UserController {
 			return update(user.getId(), user, true);
 		User persistedUser = userService.findOrFail(user.getId());
 		user.setId(persistedUser.getId());
+		user.setCpf(persistedUser.getCpf());
 		user.setCreatedAt(persistedUser.getCreatedAt());
 		user.setPassword(persistedUser.getPassword());
 		try {

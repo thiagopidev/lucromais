@@ -61,7 +61,7 @@ public class User implements Serializable {
 	**/
 	@NotBlank(message = "CPF é obrigatório")
 	@CPF(message = "CPF inválido")
-	@Column(columnDefinition = "char(11)", nullable = false)
+	@Column(columnDefinition = "char(11)", nullable = false, updatable = false)
 	private String cpf;
 	
 	/**
