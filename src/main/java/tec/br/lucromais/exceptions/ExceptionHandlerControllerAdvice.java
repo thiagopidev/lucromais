@@ -57,4 +57,13 @@ public class ExceptionHandlerControllerAdvice {
 	public String handleNoResourceFoundException(NoResourceFoundException e) {
 		return "errors/404";
 	}
+	
+	/**
+	 * handler para captura de exceções não tratadas
+	 * @return caminho da página de erro 500
+	**/
+	@ExceptionHandler(Exception.class)
+	public String handleUncaught(Exception e) {
+		return "errors/500";
+	}
 }
