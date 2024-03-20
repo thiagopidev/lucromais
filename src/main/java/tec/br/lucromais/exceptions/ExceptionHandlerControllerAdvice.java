@@ -2,6 +2,7 @@ package tec.br.lucromais.exceptions;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 /**
  * Classe para redirecionar exceções para páginas de erro 
@@ -46,5 +47,14 @@ public class ExceptionHandlerControllerAdvice {
 	@ExceptionHandler(IllegalArgumentException.class)
 	public String handleIllegalArgumentException(IllegalArgumentException e) {
 		return "errors/400";
+	}
+	
+	/**
+	 * handler para captura de NoResourceFoundException
+	 * @return caminho da página de erro 404
+	**/
+	@ExceptionHandler(NoResourceFoundException.class)
+	public String handleNoResourceFoundException(NoResourceFoundException e) {
+		return "errors/404";
 	}
 }
