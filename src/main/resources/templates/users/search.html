@@ -52,7 +52,7 @@
 											</thead>
 											<tbody>
 												<tr th:each="user : ${users}">
-													<td th:text="${user.getEmail().toLowerCase()}"></td>
+													<td th:text="${user.getEmail()}"></td>
 													<td th:text="${user.getAuthorities().get(0).getAuthority() == 'ADM' ? 'Administrador' : 'Cliente' }"></td>
 													<td th:text="${user.isEnabled() ? 'Ativo' : 'Inativo' }"></td>
 													<td><a th:href="@{/users/{id}/update(id=${user.getId()})}" title="Editar"><i class="fa fa-edit ico-grid ico-edit"></i></a></td>
