@@ -5,12 +5,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Classe para redirecionar exceções para páginas de erro 
  * @author Thiago Pinheiro do Nascimento
  * @version 0.1
  * @since 0.1
 **/
+@Slf4j
 @ControllerAdvice
 public class ExceptionHandlerControllerAdvice {
 	
@@ -74,6 +77,7 @@ public class ExceptionHandlerControllerAdvice {
 	**/
 	@ExceptionHandler(Exception.class)
 	public String handleUncaught(Exception e) {
+		log.error(e.getMessage(), e);
 		return "errors/500";
 	}
 }
