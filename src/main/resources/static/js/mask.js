@@ -17,17 +17,3 @@ $(".time").blur(function(){
 		this.value="";
 	}
 });
-$(".cpf-cnpj").mask("000.000.000-00", {
-  onKeyPress: function(cpfcnpj, e, field, options) {
-    const masks = ["000.000.000-000", "00.000.00000/000", "00.000.000/0000-00"];
-    let mask = null;
-    if (cpfcnpj.length <= 14) {
-      mask = masks[0];
-    } else if (cpfcnpj.length <= 15) {
-      mask = masks[1];
-    } else {
-      mask = masks[2];
-    }
-    $(".cpf-cnpj").mask(mask, options);
-  }
-});
