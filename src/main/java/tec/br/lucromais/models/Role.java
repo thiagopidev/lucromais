@@ -9,6 +9,7 @@ import lombok.Getter;
  * @since 0.1
 **/
 public enum Role {
+	
 	SYS("SYS"),
 	ADM("ADM"),
 	CLI("CLI");
