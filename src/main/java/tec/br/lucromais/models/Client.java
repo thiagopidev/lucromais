@@ -70,7 +70,7 @@ public class Client implements Serializable {
 	**/
 	@CNPJ(groups = CnpjGroup.class, message = "CNPJ inválido")
 	@CPF(groups = CpfGroup.class, message = "CPF inválido")
-	@NotBlank(message = "CNPJ/CPF é obrigatório")
+	@NotBlank(message = "CNPJ ou CPF é obrigatório")
 	@Column(name = "cpf_cnpj", length = 14, nullable = false)
 	private String cpfOrCnpj;
 	
@@ -78,12 +78,14 @@ public class Client implements Serializable {
 	 * Razão social do cliente
 	**/
 	@Column(length = 80)
+	@Length(max = 80, message = "Razão social deve conter no máximo 80 caracteres")
 	private String corporateReason;
 	
 	/**
-	 * Nome fantasia do cliente
+	 * Nome fantasia ou nome completo do cliente
 	**/
-	@NotBlank(message = "Nome é obrigatório")
+	@NotBlank(message = "Nome fantasia ou nome completo é obrigatório")
+	@Length(max = 80, message = "Nome fantasia ou nome completo deve conter no máximo 80 caracteres")
 	@Column(length = 80, nullable = false)
 	private String fantasyName;
 	
@@ -91,16 +93,16 @@ public class Client implements Serializable {
 	 * Email do cliente
 	**/
 	@NotBlank(message = "E-mail é obrigatório")
-	@Length(min = 10, max = 60, message = "E-mail deve conter entre 10 e 60 caracteres")
+	@Length(max = 60, message = "E-mail deve conter no máximo 60 caracteres")
 	@Email(message = "E-mail inválido")
 	@Column(length = 50, nullable = false)
 	private String email;
 	
 	/**
-	 * Data de nascimento ou abertura do cliente
+	 * Data de abertura ou data de nascimento do cliente
 	**/
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@NotNull(message = "Data é obrigatória")
+	@NotNull(message = "Data de abertura ou data de nascimento é obrigatória")
 	@Column(columnDefinition = "datetime",  nullable = false)
 	private Date birth;
 	
