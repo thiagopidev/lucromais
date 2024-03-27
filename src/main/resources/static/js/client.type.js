@@ -40,11 +40,11 @@ ClientType.DinamicMask = (function() {
 		var divcorp = document.getElementById("div-corporation");
 		divdoc.classList.remove("hidden");
 		divdata.classList.remove("hidden");
-		this.fantasyNameLabel.text("Nome Completo");
-		this.birthLabel.text("Data de Nascimento");
+		this.fantasyNameLabel.text("Nome completo");
+		this.birthLabel.text("Data de nascimento");
 		if(selectedClientType.data('document') == "CNPJ") {
-			this.fantasyNameLabel.text("Nome Fantasia");
-			this.birthLabel.text("Data de Abertura");
+			this.fantasyNameLabel.text("Nome fantasia");
+			this.birthLabel.text("Data de abertura");
 			if(divcorp.classList.contains("hidden"))
 				divcorp.classList.remove("hidden");	
 		} else {
