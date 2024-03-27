@@ -6,6 +6,10 @@ ClientType.DinamicMask = (function() {
 		this.radio = $('.client-type-radio');
 		this.label = $('[for=cpfOrCnpj]');
 		this.input = $('#cpfOrCnpj');
+			
+		this.fantasyNameLabel = $('[for=fantasyName]');
+		this.birthLabel = $('[for=birth]');
+		this.saveButton = $('#save');
 	}
 	
 	DinamicMask.prototype.start = function() {
@@ -23,10 +27,32 @@ ClientType.DinamicMask = (function() {
 	}
 	
 	function applyMask(selectedClientType) {
+		updateOtherLabels.call(this, selectedClientType);
 		this.label.text(selectedClientType.data('document'));
 		this.input.mask(selectedClientType.data('mask'));
 		this.input.removeAttr('disabled');
+		this.saveButton.removeAttr('disabled');
 	}
+	
+	function updateOtherLabels(selectedClientType) {
+		var divdoc = document.getElementById("div-doc");
+		var divdata = document.getElementById("div-data");
+		var divcorp = document.getElementById("div-corporation");
+		divdoc.classList.remove("hidden");
+		divdata.classList.remove("hidden");
+		this.fantasyNameLabel.text("Nome Completo");
+		this.birthLabel.text("Data de Nascimento");
+		if(selectedClientType.data('document') == "CNPJ") {
+			this.fantasyNameLabel.text("Nome Fantasia");
+			this.birthLabel.text("Data de Abertura");
+			if(divcorp.classList.contains("hidden"))
+				divcorp.classList.remove("hidden");	
+		} else {
+			if(!divcorp.classList.contains("hidden"))
+				divcorp.classList.add("hidden");
+		}
+	}
+	
 	return DinamicMask;
 }());
 
