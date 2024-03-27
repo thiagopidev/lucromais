@@ -77,8 +77,7 @@ public class Client implements Serializable {
 	/**
 	 * Razão social do cliente
 	**/
-	@NotBlank(message = "Razão social é obrigatório")
-	@Column(length = 80, nullable = false)
+	@Column(length = 80)
 	private String corporateReason;
 	
 	/**
