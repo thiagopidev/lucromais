@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:data="https://www.thymeleaf.org/extras/data">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>Lucromais | Clientes</title>
+		<link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}"/>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"/>
+		<link rel="stylesheet" th:href="@{/vendors/fontawesome/css/all.min.css}"/>
+		<link rel="stylesheet" th:href="@{/vendors/adminlte/css/adminlte.min.css}"/>
+		<link rel="stylesheet" th:href="@{/css/styles.css}"/>
+	</head>
+	<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+		<div class="wrapper">
+			<div th:replace="~{frags/sample :: main-nav}"></div>
+			<div th:replace="~{frags/sample :: menu}"></div>
+			<div class="content-wrapper">
+				<div class="content-header">
+					<div class="container-fluid">
+						<div class="row mb-2">
+							<div class="col-sm-6">
+								<h1 class="m-0">Clientes</h1>
+							</div>
+							<div class="col-sm-6">
+								<ol class="breadcrumb float-sm-right">
+									<li class="breadcrumb-item active">Administração</li>
+									<li class="breadcrumb-item active">Clientes</li>
+									<li class="breadcrumb-item active">Editar</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="content">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="card">
+									<form method="post" th:action="@{/clients/update}" th:object="${client}" autocomplete="off" class="form-horizontal">
+										<div class="card-header d-flex p-0">
+											<h5 class="card-title p-3"><i class="fa fa-edit fa-sm ico"></i> Editar</h5>
+											<ul class="nav nav-pills ml-auto p-2">
+												<li class="nav-item">
+													<a class="nav-link text-primary" th:href="@{/clients}">
+														<i class="fa fa-search fa-sm ico"></i>
+														Ir para a pesquisa
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="card-body">
+											<div class="alert alert-danger alert-dismissible" th:if="${#fields.hasErrors('*')}">
+												<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+												<h6><i class="icon fas fa-exclamation-triangle"></i>Atenção!</h6>
+												<div th:each="error : ${#fields.errors('*')}" th:text="${error}" class="text-sm"></div>
+											</div>
+											<input class="form-control input" type="hidden" th:field="*{id}"/>
+											<div class="row">
+												<div class="col-sm-2"  th:each="clientType : ${clientTypes}">
+													<div class="form-group">
+														<div class="custom-control custom-radio">
+															<input class="custom-control-input client-type-radio" type="radio" th:id="|id_${clientType.getDescription()}|" th:field="*{type}" th:value="${clientType}" th:data-document="${clientType.getDocument()}" th:data-mask="${clientType.getMask()}" th:classappend="${#fields.hasErrors('type')} ? is-invalid"/>
+															<label th:for="|id_${clientType.getDescription()}|" class="custom-control-label" th:text="${clientType.getDescription()}"></label>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group row hidden" id="div-doc">
+												<label for="cpfOrCnpj" class="col-sm-2 col-form-label">Documento</label>
+												<div class="col-sm-2">
+													<input class="form-control input" type="text" th:field="*{cpfOrCnpj}" th:classappend="${#fields.hasErrors('cpfOrCnpj')} ? is-invalid" disabled/>
+												</div>
+											</div>
+											<div class="form-group row hidden" id="div-corporation">
+												<label for="corporateReason" class="col-sm-2 col-form-label">Razão social</label>
+												<div class="col-sm-3">
+													<input class="form-control input" type="text" th:field="*{corporateReason}" th:classappend="${#fields.hasErrors('corporateReason')} ? is-invalid"/>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label for="fantasyName" class="col-sm-2 col-form-label">Nome</label>
+												<div class="col-sm-3">
+													<input class="form-control input" type="text" th:field="*{fantasyName}" th:classappend="${#fields.hasErrors('fantasyName')} ? is-invalid"/>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label for="email" class="col-sm-2 col-form-label">E-mail</label>
+												<div class="col-sm-3">
+													<input class="form-control input" type="text" th:field="*{email}" th:classappend="${#fields.hasErrors('email')} ? is-invalid"/>
+												</div>
+											</div>
+											<div class="form-group row hidden" id="div-data">
+												<label for="birth" class="col-sm-2 col-form-label">Data</label>
+												<div class="col-sm-2">
+													<input class="form-control input date" type="text" th:field="*{birth}" th:classappend="${#fields.hasErrors('birth')} ? is-invalid"/>
+												</div>
+											</div>
+										</div>
+										<div class="card-footer">
+											<button type="submit" class="btn btn-primary btn-regular" id="save" disabled><i class="fa fa-save fa-sm ico"></i>Salvar</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<div th:replace="~{frags/sample :: footer}"></div>
+		</div>
+		<script th:src="@{/vendors/jquery/jquery.min.js}"></script>
+		<script th:src="@{/vendors/bootstrap/js/bootstrap.bundle.min.js}"></script>
+		<script th:src="@{/vendors/inputmask/js/inputmask.min.js}"></script>
+		<script th:src="@{/vendors/adminlte/js/adminlte.min.js}"></script>
+		<script th:src="@{/js/mask.js}"></script>
+		<script th:src="@{/js/client.type.js}"></script>
+	</body>
+</html>
